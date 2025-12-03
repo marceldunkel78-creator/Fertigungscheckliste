@@ -18,11 +18,12 @@ body {
   padding-bottom: 5px;
 } */
 .Toolbar {
-  padding: 0px;
+  padding: 20px;
   background-color: rgba(255, 255, 255, 0.1);
   display: block;
-  text-align: center;
+  text-align: left;
   font-size: 20px; 
+
   width: 100%;
   
   position:relative;
@@ -487,7 +488,6 @@ button:hover {
   margin: 4px 0 6px 0; /* reduced top/bottom spacing */
 }
 
-.CalendarToolbar #XMLDropzone{order: 4}
 .CalendarToolbar #DownloadXMLBtn{order:5}
 .CalendarToolbar button{height:32px;padding:4px 8px;margin:0} /* slightly smaller buttons */
 
@@ -564,28 +564,7 @@ button:hover {
 .calendar-today{outline:2px solid rgba(255,255,255,0.08)}
 .calendar-legend{display:flex;gap:12px;margin-top:8px;color:#ddd}
 
-/* XML dropzone next to calendar buttons */
-.XMLDropzone{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  min-width:180px;
-  height:44px;
-  padding:6px 10px;
-  margin: 10px 20px 10px 20px;
-  vertical-align:middle;
-  border:2px dashed rgba(255,255,255,0.12);
-  border-radius:6px;
-  background: rgba(255,255,255,0.02) url('upload.svg') right 8px center/40% no-repeat;
-  cursor:copy;
-  color: #ddd;
-  font-size: 0.95em;
-}
-.XMLDropzone.dragover{
-  border-color: #9b5de5;
-  background: rgba(155,93,229,0.08) url('upload.svg') right 8px center/40% no-repeat;
-}
+/* XML dropzone removed (styles cleaned) */
 
 /* Temporary highlight when jumping to a device */
 .device-flash{
@@ -659,7 +638,7 @@ button:hover {
 .HelpSticky:hover{ background: rgba(0,0,0,0.65); }
 
 /* Help modal specific styling (reuse PrintModal but narrower) */
-.HelpModal{ width: 420px; max-height: 70vh; padding: 12px; }
+.HelpModal{ width: 620px; max-height: 70vh; padding: 12px; }
 .HelpModal .help-content{ white-space:pre-wrap; font-family: monospace; font-size: 0.95em; color:#fff; background: rgba(0,0,0,0.12); padding: 8px; border-radius:6px; }
 
 @media (max-width: 520px){

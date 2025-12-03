@@ -27,24 +27,7 @@
 
       <!-- <div id="Testfield">test</div>
       <div id="Testfield1">test1</div> -->
-    <div class="CalendarToolbar no-print">
-      <div id="XMLDropzone" class="XMLDropzone" title="Drop XML file here to load">Drop your XML here</div>
-    </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var toolbar = document.querySelector('.Toolbar.no-print');
-      var drop = document.getElementById('XMLDropzone');
-      if (!toolbar || !drop) return;
-      // ensure toolbar uses flex so we can align items
-      var cs = getComputedStyle(toolbar);
-      if (cs.display !== 'flex') toolbar.style.display = 'flex';
-      toolbar.style.alignItems = 'center';
-      // move drop zone into the toolbar at the left
-      toolbar.insertBefore(drop, toolbar.firstChild);
-      drop.style.marginRight = '12px';
-      drop.style.order = '0';
-    });
-    </script>
+    <div class="CalendarToolbar no-print"></div>
 
     <!-- Fixed calendar toggle icon (upper-right) -->
     <!-- Hidden file input used by the folder button to open and parse XML files -->

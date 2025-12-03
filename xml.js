@@ -796,24 +796,7 @@ function appendDevicesFromXmlText(filetext){
   try{ populateMissingOrders(); }catch(e){}
 }
 
-// Attach drag/drop handlers to the dropzone if present
-document.addEventListener('DOMContentLoaded', function(){
-  try{
-    const dz = document.getElementById('XMLDropzone');
-    if (!dz) return;
-    dz.addEventListener('dragover', function(e){ e.preventDefault(); dz.classList.add('dragover'); });
-    dz.addEventListener('dragleave', function(e){ e.preventDefault(); dz.classList.remove('dragover'); });
-    dz.addEventListener('drop', function(e){
-      e.preventDefault(); dz.classList.remove('dragover');
-      const dt = e.dataTransfer;
-      if (!dt) return;
-      const file = dt.files && dt.files[0];
-      if (file) {
-        readXMLFromFile(file);
-      }
-    });
-  }catch(e){console.log('dropzone attach error',e)}
-});
+// Dropzone removed: drag/drop handled via file inputs now.
 
 // Normalize various date/time strings to YYYY-MM-DD suitable for <input type="date">.
 function normalizeDateForInput(val){
