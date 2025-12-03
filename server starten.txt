@@ -1,0 +1,5 @@
+$env:SEARCH_DIR = "\\server\Text\Company\Aufträge_Kunden\2025"
+node server.js
+
+
+2x Ctrl+C im Terminal beendet den Server

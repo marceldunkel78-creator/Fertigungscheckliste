@@ -1,0 +1,60 @@
+
+
+Kurzanleitung — Visitron Fertigungs /Liefer Check-Liste (Update 03.12.2025)
+Zweck
+Die Web App dient zum Erfassen von Auftrags , Beschaffungs  und Fertigungsdaten pro Auftrag und als Checkliste für Manufacturing, Auslieferung und Auftragsablauf.  XML Dateien lassen sich vom Server laden/anhängen, lokal herunterladen und zurück in denselben Server Ordner speichern. Es gibt spezielle Fertigungs Checks (z. B. VS LMS) und ein druckbares Abnahmeprotokoll.
+Der Server läuft standardmäßig auf http://192.168.0.1:3000/ und durchsucht den Aufträge Kunden Ordner nach XML-Dateien.
+Mit dem Edge Browser lässt sich die App an der Taskleiste docken.
+	Auf die drei Punkte rechts oben  ToolsAn die Taskleiste anheften
+________________________________________
+
+
+1) Wichtige UI Elemente (Top Right Toolbar)
+•	Eingabefeld „Auftragsnr.“ + 🔎 (Find order on server)
+→ Suche im Server Suchverzeichnis nach passenden XML-Dateien; bei mehreren Treffern zeigt ein Dialog die Auswahl.
+•	📁 (Ordner) — öffnet Dateiauswahl zum lokalen Laden (.xml)
+•	Blatt – erstelle eine neu Checkliste
+•	Doppelpfeil – Toggle die Sichtbarkeit der “Device Hinzufügen“ Buttons 
+•	🧩 (Puzzle) — Append Devices: lädt ein lokales XML und hängt nur die Devices an (ergänzt ohne Basics zu überschreiben)
+•	⬇️ (Download) — erzeugt und lädt die aktuelle Checkliste als XML-Datei herunter (Dateiname enthält Datum + Zeit)
+•	💾 (Diskette) — Speichert das aktuell erzeugte XML auf dem Server in denselben Ordner, aus dem zuletzt ein XML geladen wurde; prüft auf Vorhandensein und warnt beim Überschreiben
+•	🖨️ (Drucken) — Druck/Export Hilfsfunktion
+•	📝 (Acceptance Protocol) — erzeugt ein druckbares Abnahmeprotokoll (englische Labels)
+•	Kalender: Zeigt alle, in die Checklisten eingetragenen, Daten an. Einfach daneben klicken zum Schließen
+________________________________________
+2) Erstelle eine neue Checkliste
+•	Wenn ein neuer Auftrag erzeugt wird kann mit dem „Blatt“ Toolbar-Button eine neue Checkliste  erstellt werden 
+•	Füge die im Auftrag enthaltenen Devices hinzu. Verwende Custom Manufacturing or Custom Procurement falls das Gerät nicht kategorisiert ist. 
+•	Fülle die Basics und die Devices soweit es geht mit Information. Wichtig ist die Auftragsnummer die den Titel des XML Files bildet. 
+•	Beim ersten Erstellen lade die Datei mit dem Download XML Button herunter. Und kopiere sie manuell in den von dir erzeugten Auftragordner unter Dokumente (Aufträge Kunden). 
+•	Von da an gilt 3) : 
+
+3) XML Workflow
+•	Dateien suchen & laden:
+1.	Trage eine Auftragsnummer in das Suchfeld ein und klicke 🔎.
+2.	Wähle falls nötig eine Datei im Auswahl Modal.
+3.	Die Datei wird geladen; die App merkt sich den server relativen Pfad (wichtig für „Speichern in selben Ordner“).
+•	Devices anhängen (ohne Basics zu ersetzen):
+o	Klick „Puzzle“ und wähle eine lokale XML → nur Devices werden angehängt.
+o	Relevant, wenn die Fertigung einzelne Devices vorfertigt
+•	XML zurück auf Server speichern (in selben Ordner):
+o	Lade zuerst eine Datei vom Server (🔎). Dann:
+	Klick 💾 (Diskette).
+	Die App erzeugt einen Dateinamen wie beim Download.
+	Falls dieselbe Datei seit dem Laden von jemand geändert wurde, dann wird man gewarnt und gefragt ob man die Datei überschreiben will unter neuer Versionsnummer speichern oder canceln will.
+________________________________________
+4) Abnahmeprotokoll (Acceptance Protocol)
+•	Klick 📝 oben rechts — öffnet ein neues Fenster mit druckbarem Protokoll:
+o	Enthält Auftrag, Kunde, Lieferdatum, pro Gerät: geliefert/working Checkboxen + Kommentarfelder.
+o	Signaturzeilen für Mitarbeiter und Kunde.
+o	Druck Schaltfläche im Protokollfenster.
+________________________________________
+5) Gerätechecklisten
+•	Für Geräte gibt es spezielle Produktionschecks / Ausgangs Checks im Gerätedetail (Stromversorgung, digitale Ports, Kabel Kit etc.). Diese werden beim Erzeugen/Laden automatisch eingefügt.
+•	Controlling: Die Sektion „Controlling“ zeigt fehlende Bestellungen und Fertigungsstatus;
+
+________________________________________
+6) Häufige Fragen / Troubleshooting
+•	"Die Diskette speichert nichts"
+→ Stelle sicher, dass du zuvor eine Datei vom Server geladen hast (App braucht den Ordnerpfad). Prüfe Server Logs auf Berechtigungsfehler.
+

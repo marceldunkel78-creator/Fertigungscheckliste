@@ -1,0 +1,667 @@
+body {
+  background-color: #352d2d;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  /* text-align: center; */
+  
+}
+/* button {
+  background-color: #30182f;
+  border-color: #bdb9eb;
+  border-width: 3px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+} */
+.Toolbar {
+  padding: 0px;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: block;
+  text-align: center;
+  font-size: 20px; 
+  width: 100%;
+  
+  position:relative;
+}
+
+.Controlling{
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+}
+
+/* Ensure links inside the Controlling panel are white for readability */
+.Controlling a,
+.Controlling a:link,
+.Controlling a:visited,
+.Controlling a:hover,
+.Controlling a:active {
+  color: #ffffff;
+}
+
+.DeviceButtonsContainer {
+  display: none; /* eigentlich flex, siehe Java*/
+  flex-wrap: wrap;
+  gap: 5px;
+  /* justify-content: space-between; */
+  /* background-color: #478396; */
+  margin-bottom: 20px;
+}
+
+.Camera { 
+  background-color: #0a570a;
+}
+.Confocal{ 
+  background-color: #0c3461;
+}
+.Mic { 
+  background-color: #5f0a1c;
+}
+.LED { 
+  background-color: #0fa58c;
+}
+.Orbital { 
+  background-color: #690388;
+}
+.FRAP { 
+  background-color: #420547;
+}
+.ViRTEx { 
+  background-color: #797212;
+}
+.VS-LMS { 
+  background-color: #525f0a;
+}
+.VV { 
+  background-color: #3d8cac;
+}
+.Custom { 
+  background-color: #cc334d;
+}
+.CustomProcurement { 
+  background-color: #63101e;
+}
+.CustomManufacturing { 
+  background-color: #b30421;
+}
+.Stage { 
+  background-color: #462b04;
+}
+.PC{ 
+  background-color: #3a31e4;
+}
+.MMLaser{ 
+  background-color: #0c8adf;
+}
+.DualCam{ 
+  background-color: #0cdf99;
+}
+.Inkubation{ 
+  background-color: #df7d0c;
+}
+
+.DeviceButtons{
+  flex-grow: 1;
+  cursor: pointer;
+  /* border-style:none; */
+  /* border-radius: 5px; */
+  /* background-color: #8066be;  */
+  /* border-color:azure ; */
+  min-width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  font-size: 20px;
+
+}
+
+.Devices {
+  display: block;
+  margin: auto;
+  width: 100%;
+  /*         border-style: solid;
+    border-color: bisque;
+    border-width: 5px; */
+  text-align: left;
+  /* background-color: rgba(255, 255, 255, 0.1); */
+}
+
+.flexcontainer{
+  display: grid;
+}
+input{
+  display:inline;
+  position: absolute;
+  right:0px;
+  margin-right: 20px;
+  width: 70%;
+}
+.inputtitle{
+  text-overflow: clip;
+  width: 30%;
+  display: inline;
+}
+  
+.inputcb {
+  display: inline;
+  float: none;
+  width: 30%;
+  position:absolute;
+  right: 42%;
+   
+}
+.inputright40 {
+  
+  width: 40%;
+} 
+select {
+  float: right;
+  width: 70%;
+}
+
+/* .Devicebody input { width: 60%;} */
+table{
+  width: auto;
+  text-align: center;
+  border-style: none;
+  border-color: #000000;
+  margin: 5px;
+  border-spacing: 5px;
+}
+
+
+table input{
+  position: unset;
+  width: 90%;
+  float: none;
+  
+}
+tr:nth-child(odd){
+  background-color: rgba(255, 255, 255, 0.13);
+} 
+th{
+    background-color: rgba(255, 255, 255, 0.13);
+}
+.Basics {
+  display: none;
+  margin-bottom: 10px;
+  width: 100%;
+  /*         border-style: solid;
+    border-color: bisque;
+    border-width: 5px; */
+  text-align: left;
+  
+  
+}
+/* Two-column layout for the Basics inputs */
+.basics-grid{
+  display: grid;
+  /* use exact halves of the parent Basics width */
+  grid-template-columns: 50% 50%;
+  gap: 0px;
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
+  justify-items: start; /* left-align items within each column */
+}
+.basics-grid .Container{ text-align: left; padding: 6px 10px; width:100%; margin:0; box-sizing:border-box; }
+/* Make inputs inside the basics grid responsive and full-width */
+.basics-grid input[type="text"], .basics-grid input[type="date"], .basics-grid select, .basics-grid textarea{
+  position: static; /* override global absolute rule */
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 6px 8px;
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: white;
+  
+}
+@media (max-width: 700px){
+  .basics-grid{ grid-template-columns: 1fr; }
+}
+.Container {
+  /* display: block; */
+  margin: auto;
+  padding: 5px 10px;
+  background-color: rgba(255,255,255,0.12);
+  /*         border-style: solid;
+    border-color: rgb(109, 16, 55);
+    border-width: 5px; */
+}
+.Orderstatus {
+  /* display: block; */
+  margin: 10px 0px 10px 0px;
+  padding: 5px 10px;
+  background-color: rgba(255, 255, 255, 0.1 );
+  /*         border-style: solid;
+    border-color: rgb(109, 16, 55);
+    border-width: 5px; */
+}
+.Checkboxflex{
+  display: flex; /* eigentlich flex, siehe Java*/
+  flex-wrap: wrap;
+  gap: 5px;
+  overflow: hidden;
+  padding: 5px 5px;
+
+}
+.Checkboxflexelement{
+  flex-grow: 1;
+  padding: 0px 20px 0px 5px;
+  background-color: rgba(255, 255, 255, 0.13);
+  
+}
+.Checkboxflexelement > input{
+  width: auto;
+  position: relative;
+  top: 2px;
+}
+
+.Deviceheader {
+  display: flex;
+  align-items: center; /* vertically center children */
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.Devicename{
+  font-size: 30px;
+}
+/* Buttons inside Deviceheader (toggle and delete) */
+.Deviceheader .button-group{
+  display: flex;
+  align-items: center;
+  gap: 20px; /* no gap so Close and Delete sit adjacent */
+  margin-left: auto; /* push the group to the right side of the header */
+  flex-shrink: 0;
+}
+.Toogle, .Delete {
+  position: relative; /* no absolute positioning so flex can center them */
+  height: 28px;
+  min-width: 28px;
+  padding: 2px 6px; /* slight horizontal padding to keep glyph readable while staying tight */
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer;
+  margin: 0; /* ensure no external spacing */
+}
+.Delete { color: #ff6b6b; }
+
+.Devicebody {
+  display: block;
+  text-align: left;
+}
+button{
+  cursor: pointer;
+  margin: 20px;
+  height: 50px;
+}
+/* Remove default margin for header action buttons so they sit tightly in the button-group */
+.Deviceheader button{ margin: 0; }
+button:hover {
+  border-color: blueviolet;
+  border-width: 4px;
+  
+}
+
+/* Procurement / Manufacturing additions */
+.procurement {
+  background-color: rgba(255,255,255,0.04);
+  padding: 8px 12px;
+  margin: 8px 20px;
+  border-radius: 6px;
+}
+.procurement .row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.procurement label{
+  min-width: 140px;
+  color: #ddd;
+}
+.procurement input[type="text"], .procurement input[type="date"], .procurement input[type="datetime-local"], .procurement input[type="time"], .procurement input[type="url"]{
+  width: 60%;
+  padding: 4px 6px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: white;
+}
+
+/* manufacturing fields should match procurement layout */
+.manufacturing{
+  background-color: rgba(255,255,255,0.04);
+  padding: 8px 12px;
+  margin: 8px 20px;
+  border-radius: 6px;
+}
+
+/* Output checks block for devices */
+.OutputChecks{
+  background-color: rgba(255,255,255,0.03);
+  padding: 8px 12px;
+  margin: 8px 20px;
+  border-radius: 6px;
+}
+.OutputChecksHeader{font-weight:700;color:#eee;margin-bottom:8px}
+.OutputChecksGrid{display:flex;flex-wrap:wrap;gap:10px}
+.OutputChecksGrid label{min-width:140px;color:#ddd;display:flex;align-items:center;gap:8px}
+.OutputChecksGrid input[type="checkbox"]{position:static;width:auto}
+.OutputChecksFooter{margin-top:8px}
+.OutputChecksFooter input[type="text"]{width:60%;padding:4px 6px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.08);color:white}
+
+/* Generic block title used for procurement/manufacturing headers */
+.block-title{font-weight:700;color:#fff;background:rgba(0,0,0,0.12);padding:6px 10px;border-radius:6px;margin-bottom:8px}
+
+/* FRAP special output checks (small variant) */
+.OutputChecksSpecial{
+  background-color: rgba(255,255,255,0.05);
+  padding:8px 12px;
+  margin:8px 20px;
+  border-radius:6px;
+  position: relative; /* ensure contained layout */
+}
+.OutputChecksSpecial .OutputChecksHeader{font-weight:700;color:#eee;margin-bottom:8px}
+.OutputChecksSpecial .OutputChecksGrid{display:flex;gap:12px;flex-wrap:wrap}
+.OutputChecksSpecial label{color:#ddd;display:flex;align-items:center;gap:8px}
+
+/* override global input positioning inside these blocks (global input{} uses absolute) */
+.OutputChecks, .OutputChecksSpecial, .procurement, .manufacturing{
+  position: relative;
+}
+.OutputChecks input, .OutputChecksSpecial input, .procurement input, .manufacturing input, .OutputChecks textarea, .OutputChecksSpecial textarea{
+  position: static; /* undo global absolute positioning */
+}
+.OutputChecksFooter input[type="text"], .OutputChecksSpecial .OutputChecksFooter input[type="text"]{
+  width: 60%;
+  padding: 4px 6px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: white;
+}
+.manufacturing .row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:6px;
+}
+.manufacturing label{min-width:140px;color:#ddd}
+.manufacturing input[type="text"], .manufacturing input[type="date"]{
+  width:60%;
+  padding:4px 6px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: white;
+}
+
+.CalendarView{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 640px;
+  max-height: 80vh;
+  overflow: auto;
+  background: rgb(95, 94, 94);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 18px;
+  border-radius: 10px;
+  z-index: 9999;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+
+/* Top-right vertical icon bar that sits next to calendar icon */
+.TopRightIconBar{
+  position: fixed;
+  top: 14px;
+  right: 10px; /* place left of the calendar toggle */
+  z-index: 11000;
+  display:flex;
+  gap:0px;
+  align-items:center;
+}
+.TopRightIconBar .top-icon{
+  background: rgba(0,0,0,0.25);
+  border: none;
+  width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:6px;margin:10px;cursor:pointer;padding:0;font-size:20px;line-height:1
+}
+.TopRightIconBar .top-icon img{ width:20px;height:20px;display:block }
+.TopRightIconBar .top-icon:hover{ background: rgba(0,0,0,0.35) }
+
+/* Ensure any text input placed inside the TopRightIconBar aligns with the icon buttons
+   and does not inherit the global absolute positioning applied to inputs elsewhere. */
+.TopRightIconBar input[type="text"]{
+  position: static; /* override global absolute */
+  margin: 0 6px 0 10px; /* space between icons */
+  height: 40px;
+  line-height: 40px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: white;
+  box-sizing: border-box;
+  width: 110px; /* a bit wider for readability */
+  flex: 0 0 auto;
+}
+
+@media (max-width:500px){
+  .TopRightIconBar{ right: 8px; }
+  .CalendarToggle{ right: 48px }
+}
+
+/* Device controls (expand/collapse) */
+.DeviceControls .icon-btn{
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+}
+.DeviceControls .icon-btn img{ width:22px;height:22px; display:block }
+.DeviceControls .icon-btn:hover{ background: rgba(255,255,255,0.03) }
+.CalendarHeader{
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* toolbar area for calendar controls */
+.CalendarToolbar{
+  display: flex;
+  align-items: center;
+  gap: 6px; /* slightly tighter spacing between controls */
+  margin: 4px 0 6px 0; /* reduced top/bottom spacing */
+}
+
+.CalendarToolbar #XMLDropzone{order: 4}
+.CalendarToolbar #DownloadXMLBtn{order:5}
+.CalendarToolbar button{height:32px;padding:4px 8px;margin:0} /* slightly smaller buttons */
+
+/* Order status radio row */
+.OrderStatusRow{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.OrderStatusRow label{font-size:0.95em;color:#ddd}
+/* radios inside OrderStatusRow should not inherit the global absolute/input sizing */
+.OrderStatusRow input[type="radio"]{
+  position: static;
+  width: auto;
+  margin-right: 6px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.OrderStatusRow input[type="hidden"]{display:none}
+/* individual items inside the OrderStatusRow for consistent spacing */
+.OrderStatusItem{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  background: rgba(0,0,0,0.06);
+  border-radius:6px;
+  min-width:150px;
+}
+.OrderStatusItem:hover{background: rgba(255,255,255,0.03)}
+/* Production status radios -- ensure visible and inline */
+.ProdStatusRow{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.ProdStatusRow label{font-size:0.95em;color:#ddd}
+.ProdStatusRow input[type="radio"]{
+  position:static;
+  width:auto;
+  margin-right:6px;
+  display:inline-block;
+  vertical-align:middle;
+}
+.CalendarItem{
+  padding: 6px;
+  margin-bottom: 6px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 4px;
+}
+.CalendarItem .title{font-weight:600}
+.CalendarItem .date{font-size: 0.95em; color:#ccc}
+
+/* Month-grid calendar styles */
+.calendar-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.calendar-nav button{background:transparent;border:1px solid rgba(255,255,255,0.08);color:#fff;padding:4px 8px;border-radius:4px}
+.calendar-title{font-weight:700}
+.calendar-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px}
+.calendar-weekday{font-size:0.85em;color:#bbb;text-align:center}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.calendar-day{min-height:64px;background:rgba(255,255,255,0.02);padding:6px;border-radius:6px;position:relative}
+.calendar-empty{opacity:0.3}
+.date-number{position:absolute;left:6px;top:6px;font-size:0.9em;color:#ddd}
+.event-badge{display:inline-block;padding:2px 6px;border-radius:10px;font-size:0.75em;color:#000;margin-top:18px;cursor:pointer;margin-right:4px}
+.event-order{background:#ffd166;color:#000}
+.event-est{background:#06d6a0;color:#000}
+.event-delivery{background:#118ab2;color:#fff}
+.event-production{background:#ff6b6b;color:#fff}
+.event-system{background:#9b5de5;color:#fff}
+.event-test{background:#ffd6a5;color:#000}
+.event-shipping{background:#83c5be;color:#000}
+.calendar-today{outline:2px solid rgba(255,255,255,0.08)}
+.calendar-legend{display:flex;gap:12px;margin-top:8px;color:#ddd}
+
+/* XML dropzone next to calendar buttons */
+.XMLDropzone{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-width:180px;
+  height:44px;
+  padding:6px 10px;
+  margin: 10px 20px 10px 20px;
+  vertical-align:middle;
+  border:2px dashed rgba(255,255,255,0.12);
+  border-radius:6px;
+  background: rgba(255,255,255,0.02) url('upload.svg') right 8px center/40% no-repeat;
+  cursor:copy;
+  color: #ddd;
+  font-size: 0.95em;
+}
+.XMLDropzone.dragover{
+  border-color: #9b5de5;
+  background: rgba(155,93,229,0.08) url('upload.svg') right 8px center/40% no-repeat;
+}
+
+/* Temporary highlight when jumping to a device */
+.device-flash{
+  box-shadow: 0 0 0 3px rgba(255, 99, 99, 0.25), 0 0 12px rgba(255, 99, 99, 0.12) inset;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Print rules */
+@media print {
+  /* hide UI controls */
+  .no-print { display: none !important; }
+  /* make devices expand for print */
+  .Devicebody { display: block !important; }
+  /* ensure readable colors on white background */
+  body { background: #fff !important; color: #000 !important; }
+  .Deviceheader { background: #eee !important; color: #000 !important; }
+  .Container, .OutputChecks, .manufacturing, .procurement, .OutputChecksSpecial { background: transparent !important; color: #000 !important; }
+  /* page margins */
+  @page { margin: 12mm; }
+}
+
+/* Print selection modal */
+.PrintModalOverlay{
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+.PrintModal{
+  background: #5f5f5f;
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  width: 520px;
+  max-height: 70vh;
+  overflow: auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+.PrintModal .small{ height:28px;padding:4px 8px;margin:0;background:transparent;border:1px solid rgba(255,255,255,0.08);color:#fff;border-radius:4px;cursor:pointer }
+.PrintModal .small.primary{ background:#9b5de5;border-color:#9b5de5 }
+.PrintModalList .list div:last-child{ border-bottom: none }
+.PrintModal input[type="checkbox"]{ transform: scale(1.02); }
+
+/* Prevent modal from printing */
+@media print{
+  .PrintModalOverlay, .PrintModal { display: none !important }
+}
+
+/* Help sticky button bottom-left */
+.HelpSticky{
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+  z-index: 12000;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 20px;
+}
+.HelpSticky:hover{ background: rgba(0,0,0,0.65); }
+
+/* Help modal specific styling (reuse PrintModal but narrower) */
+.HelpModal{ width: 420px; max-height: 70vh; padding: 12px; }
+.HelpModal .help-content{ white-space:pre-wrap; font-family: monospace; font-size: 0.95em; color:#fff; background: rgba(0,0,0,0.12); padding: 8px; border-radius:6px; }
+
+@media (max-width: 520px){
+  .HelpModal{ width: 92%; }
+}

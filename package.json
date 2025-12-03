@@ -1,0 +1,15 @@
+{
+  "name": "fertigungscheckliste-server",
+  "version": "1.0.0",
+  "description": "Small local server to search and serve XML files for the Checklist app.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

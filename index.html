@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checklist</title>
+  <!-- Site icon: VSCChecklistIcon.png should be placed in the project root -->
+  <link rel="icon" type="image/png" href="VSChecklistIcon.png" />
+  <link rel="apple-touch-icon" href="VSChecklistIcon.png" />
+    <script src="java.js"></script>
+    <script src="xml.js"></script>
+    <!-- <script type="text/javascript" src="vkbeautify.0.99.00.beta.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="Toolbar no-print">
+        <div id="Title">
+          Visitron Auftrags-Checklist
+        </div>
+    </div>
+
+      <!-- <div id="Testfield">test</div>
+      <div id="Testfield1">test1</div> -->
+    <div class="CalendarToolbar no-print">
+      <div id="XMLDropzone" class="XMLDropzone" title="Drop XML file here to load">Drop your XML here</div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toolbar = document.querySelector('.Toolbar.no-print');
+      var drop = document.getElementById('XMLDropzone');
+      if (!toolbar || !drop) return;
+      // ensure toolbar uses flex so we can align items
+      var cs = getComputedStyle(toolbar);
+      if (cs.display !== 'flex') toolbar.style.display = 'flex';
+      toolbar.style.alignItems = 'center';
+      // move drop zone into the toolbar at the left
+      toolbar.insertBefore(drop, toolbar.firstChild);
+      drop.style.marginRight = '12px';
+      drop.style.order = '0';
+    });
+    </script>
+
+    <!-- Fixed calendar toggle icon (upper-right) -->
+    <!-- Hidden file input used by the folder button to open and parse XML files -->
+  <input type="file" id="XML-Input" accept=".xml" style="display:none" onchange="readXML()" />
+  <!-- Hidden file input used to append devices from an XML file without replacing existing content -->
+  <input type="file" id="XML-Append-Input" accept=".xml" style="display:none" onchange="readXMLAppend()" />
+    <div id="TopRightIconBar" class="TopRightIconBar no-print" aria-label="Top right controls">
+      <!-- Order search placed to the left of CollapseAllTop as requested -->
+      <input type="text" id="OrderSearchInput" placeholder="Auftragsnr." title="Auftragsnummer suchen" style="width:90px;margin-right:8px;padding:4px;border-radius:4px;border:1px solid #ccc;" />
+      <button class="top-icon" id="OrderSearchBtn" title="Find order on server" aria-label="Find order on server" onclick="searchOrderAndLoad()">🔎</button>
+      <button class="top-icon" id="CollapseAllTop" title="Collapse all" aria-label="Collapse all devices" onclick="collapseAllDevices()">▲</button>
+      <button class="top-icon" id="ExpandAllTop" title="Expand all" aria-label="Expand all devices" onclick="expandAllDevices()">▼</button>
+      <!-- New checklist: use white page emoji -->
+      <button class="top-icon" id="NewChecklistIcon" title="New Checklist" aria-label="New checklist" onclick="newChecklist()">📄</button>
+      <!-- Load XML: folder emoji opens file selector which triggers readXML on change -->
+      <button class="top-icon" id="LoadXML" title="Open XML file" aria-label="Open XML file">📁</button>
+      <button class="top-icon" id="LoadXMLAppend" title="Append Devices from XML" aria-label="Append devices from XML" onclick="selectFile('XML-Append-Input')">🧩</button>
+      <button class="top-icon" id="ToggleDevicesIcon" title="Toggle Devices" aria-label="Toggle devices" onclick="toggleFlex('DBC')">🔁</button>
+      <button class="top-icon" id="DownloadXMLIcon" title="Download XML" aria-label="Download XML" onclick="createXML2()">⬇️</button>
+      <button class="top-icon" id="PrintIcon" title="Print to PDF" aria-label="Print" onclick="printToPDF()">🖨️</button>
+  <button class="top-icon" id="SaveToServerIcon" title="In selben Ordner auf Server speichern" aria-label="Save XML to server folder" onclick="saveXmlToServerSameFolder()">💾</button>
+      <button class="top-icon" id="CalendarToggleIcon"  title="Open calendar" onclick="toggleCalendar()">📅</button>
+      <!-- Abnahmeprotokoll / Acceptance protocol -->
+      <button class="top-icon" id="AcceptanceProtocolBtn" title="Abnahmeprotokoll" aria-label="Abnahmeprotokoll" onclick="createAcceptanceProtocol()">📝</button>
+    </div>
+
+    <div id="CalendarView" class="CalendarView" style="display:none">
+      <div class="CalendarHeader">Calendar</div>
+      <div id="CalendarContent" class="CalendarContent"></div>
+    </div>
+
+    <div class="DeviceButtonsContainer" id="DBC">
+      <div
+        id="AddCameraButton"
+        class="DeviceButtons Camera"
+        onclick="addCamera()"
+      >
+        + Kamera +
+      </div>
+      <div
+        id="AddConfocalButton"
+        class="DeviceButtons Confocal"
+        onclick="addConfocal()"
+      >
+        + Confocal +
+      </div>
+      <div id="AddLEDButton" class="DeviceButtons LED" onclick="addLED()">
+        + LED +
+      </div>
+      <div
+        id="AddOrbitalButton"
+        class="DeviceButtons Orbital"
+        onclick="addOrbital()"
+      >
+        + Orbital +
+      </div>
+      <div id="AddFRAPButton" class="DeviceButtons FRAP" onclick="addFRAP()">
+        + FRAP +
+      </div>
+      <div
+        id="AddViRTExButton"
+        class="DeviceButtons ViRTEx"
+        onclick="addViRTEx()"
+      >
+        + ViRTEx +
+      </div>
+      <div id="AddStageButton" class="DeviceButtons Stage" onclick="addStage()">
+        + Stage +
+      </div>
+      <div id="AddMicButton" class="DeviceButtons Mic" onclick="addMic()">
+        + Mic +
+      </div>
+      <div id="AddLMSButton" class="DeviceButtons VS-LMS" onclick="addVSLMS()">
+        + VS-LMS +
+      </div>
+      <div id="AddPCButton " class="DeviceButtons PC" onclick="addPC()">
+        + PC +
+      </div>
+      <div id="AddVVButton" class="DeviceButtons VV" onclick="addVV()">
+        + VV +
+      </div>
+      <div id="AddMMLaser" class="DeviceButtons MMLaser" onclick="addMMLaser()">
+        + Multimode Laser +
+      </div>
+      <div id="AddInkubation" class="DeviceButtons Inkubation" onclick="addInkubation()">
+        + Inkubation +
+      </div>
+      <div id="AddDualCam" class="DeviceButtons DualCam" onclick="addDualCam()">
+        + DualCam/Splitter +
+      </div>
+      <div
+        id="AddCustomProcurementButton"
+        class="DeviceButtons CustomProcurement"
+        onclick="addCustomProcurement()"
+      >
+        + Custom Procurement +
+      </div>
+      <div
+        id="AddCustomManufacturingButton"
+        class="DeviceButtons CustomManufacturing"
+        onclick="addCustomManufacturing()"
+      >
+        + Custom Manufacturing +
+      </div>
+    </div>
+
+    <div class="CheckList" id="Checklist">
+      <!-- Die Checkliste ist der Teil der über die Toolbar gespeichert und geladen wird -->
+      <div class="Basics" id="Basics">
+        <div class="basics-grid">
+        <div class="Container">
+          Auftragsnr.:
+          <input type="text" id="order" class="Info" />
+        </div>
+        <div class="Container">
+          Kunde:
+          <input type="text" id="customer" class="Info" />
+        </div>
+        <div class="Container">
+          Testphase Start:
+          <input type="date" id="testphase_start" class="Info" />
+        </div>
+        <div class="Container">
+          Testphase Ende:
+          <input type="date" id="testphase_end" class="Info" />
+        </div>
+        <div class="Container">
+          Verpackung/Versand:
+          <input type="date" id="verpackung_versand" class="Info" />
+        </div>
+        <div class="Container">
+          System-Lieferung:
+          <input type="date" id="system_delivery_dt" class="Info" />
+        </div>
+        </div>
+        <div class="Container">
+          <div class="Checkboxflex">
+            <div class="Checkboxflexelement">
+              Manual:
+              <input type="checkbox" id="manual" name="Manual" class="Info" />
+            </div>
+            <div class="Checkboxflexelement">
+              Toolbox:
+              <input type="checkbox" id="toolbox" class="Info" />
+            </div>
+            <div class="Checkboxflexelement">
+              VS-Ordner weiß:
+              <input type="checkbox" id="vsordner" class="Info" />
+            </div>
+            <div class="Checkboxflexelement">
+              Testsheets:
+              <input type="checkbox" id="testsheets" class="Info" />
+            </div>
+            <div class="Checkboxflexelement">
+              Filterkurven:
+              <input type="checkbox" id="filterkurven" class="Info" />
+            </div>
+            <div class="Checkboxflexelement">
+              Abnahmeprotokoll gedruckt:
+              <input type="checkbox" id="abnahmeprotokoll" class="Info" />
+            </div>
+          </div>
+        </div>
+        <div class="Orderstatus">
+          <div style="font-size:1.1em; font-weight:700; margin-bottom:8px;">Order Status:</div>
+          <div class="Checkboxflex">
+            <div class="Checkboxflexelement">
+              <label for="auftrag_bestaetigt">Auftrag bestätigt:</label>
+              <input type="checkbox" id="auftrag_bestaetigt" class="Info" />
+            </div>
+            <div class="Checkboxflexelement">
+              <label for="rechnung_verschickt">Rechnung verschickt:</label>
+              <input type="checkbox" id="rechnung_verschickt" class="Info" />
+            </div>
+          </div>
+          <div class="OrderStatusRow" id="OrderStatusRow">
+            <label class="OrderStatusItem" for="order_status_procurement"><input id="order_status_procurement" type="radio" name="order_status_radio" value="procurement/manufacturing" onchange="document.getElementById('order_status').value=this.value"> Procurement/Manufacturing</label>
+            <label class="OrderStatusItem" for="order_status_inhouse"><input id="order_status_inhouse" type="radio" name="order_status_radio" value="in house test" onchange="document.getElementById('order_status').value=this.value"> In house test</label>
+            <label class="OrderStatusItem" for="order_status_shipment"><input id="order_status_shipment" type="radio" name="order_status_radio" value="in shipment" onchange="document.getElementById('order_status').value=this.value"> In shipment</label>
+            <label class="OrderStatusItem" for="order_status_installation"><input id="order_status_installation" type="radio" name="order_status_radio" value="installation" onchange="document.getElementById('order_status').value=this.value"> Installation</label>
+            <label class="OrderStatusItem" for="order_status_accepted"><input id="order_status_accepted" type="radio" name="order_status_radio" value="accepted" onchange="document.getElementById('order_status').value=this.value"> Accepted</label>
+            <label class="OrderStatusItem" for="order_status_paid"><input id="order_status_paid" type="radio" name="order_status_radio" value="paid" onchange="document.getElementById('order_status').value=this.value"> Paid</label>
+          </div>
+          <!-- hidden field used for XML serialization -->
+          <input type="hidden" id="order_status" class="Info" value="" />
+        </div>
+
+        <!-- Missing orders / confirmations listed here after XML import -->
+        <div id="Controlling" class="Controlling" style="margin-top:12px;">
+          <div class="ControllingHeader" style="font-size:1.1em; font-weight:700; margin-bottom:8px;">
+            Controlling:
+          </div>
+            <div class="ControllingBody" style="white-space:nowrap; overflow-x:auto; padding:4px;">
+            <div id="MissingOrders" class="MissingOrders" style="display:inline-block; white-space:normal;">
+              <div id="MissingOrdersBox1" style="display:inline-block; vertical-align:top; margin-right:8px; min-width:160px; border:1px solid #c33; padding:6px; border-radius:4px; box-sizing:border-box;">
+              <div class="MissingOrdersTitle" style="font-size:0.95em; margin-bottom:6px;">Fehlende Bestellungen</div>
+              <ul id="missing_order_dates_list" style="margin:0 0 0 1.1em; padding:0;"></ul>
+              </div>
+
+              <div id="MissingOrdersBox2" style="display:inline-block; vertical-align:top; margin-right:8px; min-width:160px; border:1px solid #c33; padding:6px; border-radius:4px; box-sizing:border-box;">
+              <div class="MissingOrdersSubtitle" style="font-weight:600; font-size:0.95em; margin-bottom:6px;">Fehlende Auftragsbestätigung</div>
+              <ul id="missing_est_delivery_list" style="margin:0 0 0 1.1em; padding:0;"></ul>
+              </div>
+
+              <div id="ManufacturingBox1" style="display:inline-block; vertical-align:top; margin-right:8px; min-width:160px; border:1px solid #3a6; padding:6px; border-radius:4px; box-sizing:border-box;">
+              <div class="MissingOrdersTitle" style="font-size:0.95em; margin-bottom:6px;">In Fertigung</div>
+              <ul id="manufacturing_inprogress_list" style="margin:0 0 0 1.1em; padding:0;"></ul>
+              </div>
+
+              <div id="ManufacturingBox2" style="display:inline-block; vertical-align:top; min-width:160px; border:1px solid #3a6; padding:6px; border-radius:4px; box-sizing:border-box;">
+              <div class="MissingOrdersSubtitle" style="font-weight:600; font-size:0.95em; margin-bottom:6px;">Fertigung beendet</div>
+              <ul id="manufacturing_completed_list" style="margin:0 0 0 1.1em; padding:0;"></ul>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls moved to top-right icon bar -->
+
+      <div class="DeviceList" id="DeviceList">
+        <!-- in devicelist werden die Geräte dynamisch eingefügt -->
+      </div>
+    </div>
+
+
+  </body>
+</html>
