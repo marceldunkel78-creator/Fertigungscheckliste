@@ -9,6 +9,46 @@
   <link rel="apple-touch-icon" href="VSChecklistIcon.png" />
     <script src="java.js"></script>
     <script src="xml.js"></script>
+    <script>
+      // Toggle mobile menu visibility
+      function toggleMobileMenu() {
+        const iconBar = document.getElementById('TopRightIconBar');
+        const toggleBtn = document.getElementById('MobileMenuToggle');
+        if (iconBar && toggleBtn) {
+          iconBar.classList.toggle('mobile-open');
+          toggleBtn.classList.toggle('active');
+        }
+      }
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(e) {
+        const iconBar = document.getElementById('TopRightIconBar');
+        const toggleBtn = document.getElementById('MobileMenuToggle');
+        if (iconBar && toggleBtn && iconBar.classList.contains('mobile-open')) {
+          if (!iconBar.contains(e.target) && !toggleBtn.contains(e.target)) {
+            iconBar.classList.remove('mobile-open');
+            toggleBtn.classList.remove('active');
+          }
+        }
+      });
+
+      // Close mobile menu after action button click
+      document.addEventListener('DOMContentLoaded', function() {
+        const iconBar = document.getElementById('TopRightIconBar');
+        const toggleBtn = document.getElementById('MobileMenuToggle');
+        if (iconBar) {
+          const buttons = iconBar.querySelectorAll('.top-icon');
+          buttons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+              if (window.innerWidth <= 768) {
+                iconBar.classList.remove('mobile-open');
+                if (toggleBtn) toggleBtn.classList.remove('active');
+              }
+            });
+          });
+        }
+      });
+    </script>
     <!-- <script type="text/javascript" src="vkbeautify.0.99.00.beta.js"></script> -->
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,6 +74,12 @@
   <input type="file" id="XML-Input" accept=".xml" style="display:none" onchange="readXML()" />
   <!-- Hidden file input used to append devices from an XML file without replacing existing content -->
   <input type="file" id="XML-Append-Input" accept=".xml" style="display:none" onchange="readXMLAppend()" />
+    <!-- Hamburger menu button (mobile only) -->
+    <button id="MobileMenuToggle" class="mobile-menu-toggle no-print" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <div id="TopRightIconBar" class="TopRightIconBar no-print" aria-label="Top right controls">
       <!-- Order search placed to the left of CollapseAllTop as requested -->
       <input type="text" id="OrderSearchInput" placeholder="Auftragsnr." title="Auftragsnummer suchen" style="width:90px;margin-right:8px;padding:4px;border-radius:4px;border:1px solid #ccc;" />
