@@ -3509,7 +3509,7 @@ function addOrbital() {
             <div class="Container">
               <label for="modell_${deviceNumber}" class="inputtitle">Modell:</label>
               <select name="modell_${deviceNumber}" id="modell_${deviceNumber}" class="Device${deviceNumber}" >
-                <option value="Orbital-100-IsoTIRF">Orbital-100-IsoTIRF</option>
+                <option value="Orbital-110-IsoTIRF">Orbital-110-IsoTIRF</option>
                 <option value="Orbital-100">Orbital-100</option>
                 <option value="Orbital-200">Orbital-200</option> 
                 <option value="Orbital-500">Orbital-500</option>
@@ -3524,6 +3524,10 @@ function addOrbital() {
           <div class="Container">
             Firmwareversion: 
             <input type="text" id="fwversion_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Container">
+            Boardversion: 
+            <input type="text" id="boardversion_${deviceNumber}" class="Device${deviceNumber}" />
           </div>
           <div class="Container">
             für welches Mic? 
@@ -3542,27 +3546,27 @@ function addOrbital() {
             <input type="text" id="dclasersn_${deviceNumber}" class="Device${deviceNumber}" />
           </div>
           <div class="Container">
-            <div class="inputtitle">Attenuator (600):</div>
-            <input type="text" id="attenuator_${deviceNumber}" class="Device${deviceNumber} />
+           Attenuator (600):
+            <input type="text" id="attenuator_${deviceNumber}" class="Device${deviceNumber}" />
           </div>
           <div class="Container">
-            <div class="inputtitle">Magnification Changer (500):</div>
-            <input type="text" id="magchanger_${deviceNumber}" class="Device${deviceNumber}  />
+            Magnification Changer (500):
+            <input type="text" id="magchanger_${deviceNumber}" class="Device${deviceNumber}" />
           </div> 
           <div class="Container">
-            Galvotyp TIRF: 
+            Galvotyp und SN Nummern TIRF: 
             <input type="text" id="galvotirf_${deviceNumber}" class="Device${deviceNumber}" />
           </div>
           <div class="Container">
-            Galvotyp FRAP: 
+            Galvotyp und SN Nummern FRAP: 
             <input type="text" id="galvofrap_${deviceNumber}" class="Device${deviceNumber}" />
           </div>
           <div class="Container">
-            <div class="inputtitle">Laserfiber FRAP:</div>
+            Laserfiber FRAP:
             <input type="text" id="laserfiberfrap_${deviceNumber}" class="Device${deviceNumber}" />
           </div> 
           <div class="Container">
-            <div class="inputtitle">Laserfiber TIRF:</div>
+            Laserfiber TIRF:
             <input type="text" id="laserfibertirf_${deviceNumber}" class="Device${deviceNumber}" />
           </div> 
           <div class="Container">
@@ -3621,65 +3625,43 @@ function addOrbital() {
             FW Update funktioniert?
             <input type="checkbox" id="fwupdate_${deviceNumber}" class="Device${deviceNumber}" />
           </div>
+          <div class="Checkboxflexelement">
+            Power +-15V?
+            <input type="checkbox" id="power15v_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Sync Input OK?
+            <input type="checkbox" id="syncinput_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Sync Output OK?
+            <input type="checkbox" id="syncoutput_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Analog Output X-Galvo (-2,49-2,49V) OK?
+            <input type="checkbox" id="analogoutputxgalvo_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Analog Output Y-Galvo (-2,49-2,49V) OK?
+            <input type="checkbox" id="analogoutputygalvo_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Power ±15V Kabel 2m (DIN 3p)
+            <input type="checkbox" id="power15vkabel_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            TTL Kabel 2m (Mini Round 8p / D-Sub 9m)
+            <input type="checkbox" id="ttlkabel2m_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Analog Kabel 2m (Mini Round 4p)
+            <input type="checkbox" id="analogkabel2m_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            USB Kabel 3m
+            <input type="checkbox" id="usbkabel3m_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
         </div>
-
-  <table class="table">
-          <tr>
-            <th> Galvo-Offset</th>
-            <th>X-Galvo-Spannung V</th>
-            <th>Y-Galvo-Spannung V</th>
-          </tr>
-          <tr>
-            <td>2,49</td>
-            <td><input type="text" id="row1col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row1col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>2,00</td>
-            <td><input type="text" id="row2col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row2col3_${deviceNumber}" class="Device${deviceNumber}" /></td>              
-          </tr>
-          <tr>
-            <td>1,50</td>
-            <td><input type="text" id="row3col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row3col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>1,00</td>
-            <td><input type="text" id="row4col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row4col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>0,50</td>
-            <td><input type="text" id="row5col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row5col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>-0,50</td>
-            <td><input type="text" id="row7col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row7col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>-1,00</td>
-            <td><input type="text" id="row8col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row8col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>-1,50</td>
-            <td><input type="text" id="row9col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row9col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>-2,00</td>
-            <td><input type="text" id="row10col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row10col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>-2,49</td>
-            <td><input type="text" id="row11col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row11col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>             
-        </table>
       </div>
     `;
 
@@ -3921,65 +3903,43 @@ function addOrbitalManufacturingChecks(deviceNumber){
             FW Update funktioniert?
             <input type="checkbox" id="fwupdate_${deviceNumber}" class="Device${deviceNumber}" />
           </div>
+          <div class="Checkboxflexelement">
+            Power +-15V?
+            <input type="checkbox" id="power15v_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Sync Input OK?
+            <input type="checkbox" id="syncinput_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Sync Output OK?
+            <input type="checkbox" id="syncoutput_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Analog Output X-Galvo (-2,49-2,49V) OK?
+            <input type="checkbox" id="analogoutputxgalvo_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Analog Output Y-Galvo (-2,49-2,49V) OK?
+            <input type="checkbox" id="analogoutputygalvo_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Power ±15V Kabel 2m (DIN 3p)
+            <input type="checkbox" id="power15vkabel_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            TTL Kabel 2m (Mini Round 8p / D-Sub 9m)
+            <input type="checkbox" id="ttlkabel2m_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            Analog Kabel 2m (Mini Round 4p)
+            <input type="checkbox" id="analogkabel2m_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
+          <div class="Checkboxflexelement">
+            USB Kabel 3m
+            <input type="checkbox" id="usbkabel3m_${deviceNumber}" class="Device${deviceNumber}" />
+          </div>
         </div>
-
-  <table class="table">
-          <tr>
-            <th> Galvo-Offset</th>
-            <th>X-Galvo-Spannung V</th>
-            <th>Y-Galvo-Spannung V</th>
-          </tr>
-          <tr>
-            <td>2,49</td>
-            <td><input type="text" id="row1col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row1col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>2,00</td>
-            <td><input type="text" id="row2col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row2col3_${deviceNumber}" class="Device${deviceNumber}" /></td>              
-          </tr>
-          <tr>
-            <td>1,50</td>
-            <td><input type="text" id="row3col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row3col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>1,00</td>
-            <td><input type="text" id="row4col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row4col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>0,50</td>
-            <td><input type="text" id="row5col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row5col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>-0,50</td>
-            <td><input type="text" id="row7col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row7col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>-1,00</td>
-            <td><input type="text" id="row8col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row8col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>-1,50</td>
-            <td><input type="text" id="row9col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row9col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>-2,00</td>
-            <td><input type="text" id="row10col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row10col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>
-          <tr>
-            <td>-2,49</td>
-            <td><input type="text" id="row11col2_${deviceNumber}" class="Device${deviceNumber}" /></td>
-            <td><input type="text" id="row11col3_${deviceNumber}" class="Device${deviceNumber}" /></td>
-          </tr>             
-        </table>
       </div>
     `;
     body.insertAdjacentHTML('beforeend', orbitalHtml);
